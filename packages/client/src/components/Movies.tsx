@@ -1,17 +1,5 @@
 import * as React from 'react';
-
-interface IDirector {
-  readonly id: string;
-  readonly createdAt: string;
-  name: string;
-}
-
-interface IMovie {
-  readonly id: string;
-  readonly createdAt: string;
-  name: string;
-  readonly director: IDirector;
-}
+import { IMovie } from 'Interfaces/models/Movie';
 
 interface IMoviesProps {}
 

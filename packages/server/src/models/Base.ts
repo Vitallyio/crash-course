@@ -24,6 +24,16 @@ abstract class Base extends Model {
       await Promise.resolve(Base.knexInstance.destroy());
     }
   }
+
+  abstract getJsonAttributes(): Array<keyof this>;
+
+  $formatJson(json: Object): Object {
+    const jsonObj: any = {};
+    this.getJsonAttributes().forEach((attribute) => {
+      jsonObj[attribute] = this[attribute];
+    });
+    return super.$formatJson(jsonObj);
+  }
 }
 
 export default Base;

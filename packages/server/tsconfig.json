@@ -23,10 +23,14 @@
     "paths": {
       "*": [
         "src/*"
+      ],
+      "Interfaces/*": [
+        "../interfaces/src/*"
       ]
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "../interfaces/src/*"
   ]
 }

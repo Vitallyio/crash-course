@@ -1,5 +1,6 @@
 import { RelationMappings } from 'objection';
 import Base from './Base';
+import { IDirector } from 'Interfaces/models/Director';
 
 export default class Director extends Base {
   static tableName = 'directors';
@@ -39,4 +40,9 @@ export default class Director extends Base {
   };
 
   name: string;
+
+  getJsonAttributes(): Array<keyof this> {
+    const attributes: Array<keyof IDirector> = ['id', 'createdAt', 'name'];
+    return attributes;
+  }
 }

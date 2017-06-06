@@ -1,5 +1,6 @@
 import Director from './Director';
 import Base from './Base';
+import { IMovie } from 'Interfaces/models/Movie';
 import { RelationMappings } from 'objection';
 
 export default class Movie extends Base {
@@ -46,4 +47,9 @@ export default class Movie extends Base {
   name: string;
   director_id: string;
   readonly director: Director;
+
+  getJsonAttributes(): Array<keyof this> {
+    const attributes: Array<keyof IMovie> = ['id', 'createdAt', 'name', 'director'];
+    return attributes;
+  }
 }

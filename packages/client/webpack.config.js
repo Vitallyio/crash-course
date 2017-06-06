@@ -13,7 +13,10 @@ export default {
       src,
       node_modules
     ],
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      Interfaces: path.resolve(__dirname, '../interfaces/src/')
+    }
   },
   target: 'web',
   entry: {
