@@ -1,0 +1,39 @@
+{
+  "name": "typescript-react-redux-monorepo",
+  "version": "0.0.1",
+  "description": "The server for our monorepo",
+  "engines": {
+    "node": ">=7.7.1"
+  },
+  "main": "build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vitallyio/typescript-react-redux-monorepo.git"
+  },
+  "scripts": {
+    "start": "ts-node --inspect=9229 -r tsconfig-paths/register src/index.ts",
+    "start:watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --inspect=9229 -r tsconfig-paths/register src/index.ts"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.3",
+    "@types/cors": "^2.8.1",
+    "@types/express": "^4.0.35",
+    "@types/knex": "^0.0.53",
+    "@types/lodash": "^4.14.65",
+    "@types/node": "^7.0.27",
+    "@types/pg": "^6.1.41",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.0.4",
+    "tsconfig-paths": "^2.2.0",
+    "typescript": "^2.3.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "knex": "^0.13.0",
+    "lodash": "^4.17.4",
+    "objection": "^0.8.1",
+    "pg": "^6.2.3"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "typescript-react-redux-monorepo",
+  "version": "0.0.1",
+  "description": "The root for our monorepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vitallyio/typescript-react-redux-monorepo.git"
+  },
+  "scripts": {
+    "installAll": "npm-run-all --sequential root:install server:install client:install",
+    "root:install": "yarn",
+    "server:install": "cd packages/server && yarn",
+    "client:install": "cd packages/client && yarn",
+    "seed": "ts-node scripts/seed.ts"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2",
+    "ts-node": "^3.0.4",
+    "typescript": "^2.3.4"
+  }
+}
