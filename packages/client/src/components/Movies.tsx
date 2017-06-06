@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IMovie } from 'Interfaces/models/Movie';
+import { IDirector } from 'Interfaces/models/Director';
 import { loadMovies } from '../actions';
 import { IReduxStore } from '../reducers';
 
@@ -9,6 +10,7 @@ interface IMoviesPassedProps {}
 interface IMoviesConnectedProps {
   movies?: Array<IMovie>;
   fetching: boolean;
+  directors: { [id: string]: IDirector };
 }
 
 interface IMoviesDispatchProps {
@@ -38,21 +40,33 @@ class Movies extends React.Component<MoviesProps, undefined> {
     );
   }
 
-  private renderMovie = (movie: IMovie) => (
-    <li key={movie.id}>
-      <strong>{movie.name}</strong> - {movie.director.name}
-    </li>
-  );
+  private renderMovie = (movie: IMovie) => {
+    const { directors } = this.props;
+    // TODO: We'll clean this up next :)
+    const director = directors[movie.director as any];
+
+    return (
+      <li key={movie.id}>
+        <strong>{movie.name}</strong> - {director.name}
+      </li>
+    );
+  }
 }
 
 const mapStateToProps = (
   store: IReduxStore,
   ownProps: IMoviesPassedProps
 ): IMoviesConnectedProps => {
-  const { movies } = store;
+  const { moviesExplorer: { movies }, entities } = store;
+
+  const moviesToRender = movies.response && movies.response.result ?
+    (movies.response.result as Array<string>).map((id) => entities.movies[id]) :
+    [];
 
   return {
-    ...movies
+    fetching: movies.isFetching,
+    movies: moviesToRender,
+    directors: entities.directors
   };
 }
 
