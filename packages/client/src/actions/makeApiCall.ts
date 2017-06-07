@@ -1,7 +1,6 @@
 import { schema, normalize } from 'normalizr';
 import { IApiCallAction } from 'actions';
-
-type DispatchFunction = (action: IApiCallAction) => void;
+import { Dispatch } from 'redux';
 
 const API_BASE = 'http://localhost:5000/v1';
 
@@ -10,7 +9,7 @@ const makeApiCallWithSchema = (
     endpoint: string,
     schema: schema.Entity | [schema.Entity],
     types: IApiCallActionTypes,
-    dispatch: DispatchFunction
+    dispatch: Dispatch<IApiCallAction>
   }
 ) => {
   dispatch({
