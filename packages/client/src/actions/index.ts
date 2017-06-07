@@ -1,8 +1,20 @@
 import { MOVIES_REQUEST, MOVIES_SUCCESS } from 'actionTypes';
 import { IMovie } from 'Interfaces/models/Movie';
+import { Action, Dispatch } from 'redux';
 
-export const loadMovies = () => (dispatch: any) => {
-  dispatch({
+// Type 'type' for our Action to request and respond with
+// movies. Note that we use Redux typings and extend them
+// as need be
+export interface IMoviesAction extends Action {
+  movies?: Array<IMovie>;
+}
+
+export const loadMovies = () => (dispatch: Dispatch<IMoviesAction>) => {
+  const dispatchMovieAction = (action: IMoviesAction) => (
+    dispatch(action)
+  );
+
+  dispatchMovieAction({
     type: MOVIES_REQUEST
   });
 
@@ -19,7 +31,7 @@ export const loadMovies = () => (dispatch: any) => {
         // TODO: Display error
       }
 
-      dispatch({
+      dispatchMovieAction({
         type: MOVIES_SUCCESS,
         movies
       });

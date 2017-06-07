@@ -45,6 +45,8 @@ class Movies extends React.Component<MoviesProps, undefined> {
   );
 }
 
+// We can gain typesafe access to our Redux store by simply
+// importing the 'parent' interface
 const mapStateToProps = (
   store: IReduxStore,
   ownProps: IMoviesPassedProps
