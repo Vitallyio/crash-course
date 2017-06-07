@@ -1,4 +1,5 @@
 import * as React from 'react';
+// Import the interface from a shared 'package' instead
 import { IMovie } from 'Interfaces/models/Movie';
 
 interface IMoviesProps {}
@@ -15,6 +16,7 @@ export default class Movies extends React.Component<IMoviesProps, IMoviesState> 
   }
 
   public componentDidMount() {
+    // Send an API request to fetch movies on mount
     const fetchOptions: RequestInit = {
       headers: {
         'Content-Type': 'application/json'
