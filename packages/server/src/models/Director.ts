@@ -1,33 +1,12 @@
 import { RelationMappings } from 'objection';
 import Base from './Base';
-import { IDirector } from 'Interfaces/models/Director';
+import { JSONSchema, JSONAttributes } from 'Interfaces/models/Director';
 import Movie from './Movie';
 
 export default class Director extends Base {
   static tableName = 'directors';
 
-  static jsonSchema = {
-    id: '#director',
-
-    type: 'object',
-
-    properties: {
-      id: {
-        type: 'string'
-      },
-      createdAt: {
-        type: 'string',
-        format: 'date-time'
-      },
-      name: {
-        type: 'string',
-        faker: 'name.findName'
-      }
-    },
-    required: [
-      'name'
-    ]
-  };
+  static jsonSchema = JSONSchema;
 
   static relationMappings: RelationMappings = {
     movies: {
@@ -44,7 +23,6 @@ export default class Director extends Base {
   readonly movies?: Array<Movie>;
 
   getJsonAttributes(): Array<keyof this> {
-    const attributes: Array<keyof IDirector> = ['id', 'createdAt', 'name'];
-    return attributes;
+    return JSONAttributes;
   }
 }
