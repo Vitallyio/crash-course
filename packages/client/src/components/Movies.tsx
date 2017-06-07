@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+// Import the interface from a shared 'package' instead
 import { IMovie } from 'Interfaces/models/Movie';
 import { loadMovies } from '../actions';
 import { IReduxStore } from '../reducers';
@@ -20,7 +21,6 @@ type MoviesProps = IMoviesPassedProps & IMoviesConnectedProps & IMoviesDispatchP
 class Movies extends React.Component<MoviesProps, undefined> {
   public componentDidMount() {
     const { loadMovies: dispatchLoadMovies } = this.props;
-
     dispatchLoadMovies();
   }
 
