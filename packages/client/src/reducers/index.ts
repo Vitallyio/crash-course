@@ -4,15 +4,17 @@ import { IMovie } from 'Interfaces/models/Movie';
 import { MOVIES_REQUEST, MOVIES_SUCCESS } from 'actionTypes';
 import { IMoviesAction } from '../actions';
 
+// The interface for requesting and storing movies from the API
+interface IMoviesState {
+  fetching: boolean;
+  movies?: Array<IMovie>
+}
+
 // The single interface for the entire Redux store. This
 // will simply consist of many 'child' interfaces
 export interface IReduxStore {
   movies: IMoviesState;
-}
-
-interface IMoviesState {
-  fetching: boolean;
-  movies?: Array<IMovie>
+  // More nodes in our store, each with their own interface...
 }
 
 // A Typescript 'type guard' to dynamically change the type of
