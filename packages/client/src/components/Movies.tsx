@@ -54,7 +54,8 @@ const mapStateToProps = (
   const { movies } = store;
 
   return {
-    ...movies
+    movies: movies.movies,
+    fetching: movies.fetching
   };
 }
 
