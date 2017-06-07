@@ -1,5 +1,5 @@
-import { IMovie } from 'Interfaces/models/Movie';
-import { IDirector } from 'Interfaces/models/Director';
+import IMovie from 'models/Movie';
+import IDirector from 'models/Director';
 import { mergeWith, isArray } from 'lodash';
 import { isApiCallAction, IApiCallAction } from 'actions';
 import { Action } from 'redux';
