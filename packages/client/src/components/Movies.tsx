@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+// We assume the server will return directors/movies that obey this shape, but we
+// can't really ensure it
 interface IDirector {
   readonly id: string;
   readonly createdAt: string;
@@ -27,6 +29,7 @@ export default class Movies extends React.Component<IMoviesProps, IMoviesState> 
   }
 
   public componentDidMount() {
+    // Send an API request to fetch movies on mount
     const fetchOptions: RequestInit = {
       headers: {
         'Content-Type': 'application/json'
