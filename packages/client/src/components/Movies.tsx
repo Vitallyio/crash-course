@@ -42,7 +42,6 @@ class Movies extends React.Component<MoviesProps, undefined> {
 
   private renderMovie = (movie: IMovie) => {
     const { directors } = this.props;
-    // TODO: We'll clean this up next :)
     const director = directors[movie.director as any];
 
     return (
