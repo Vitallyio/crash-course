@@ -1,6 +1,7 @@
 import { RelationMappings } from 'objection';
 import Base from './Base';
 import { IDirector } from 'Interfaces/models/Director';
+import Movie from './Movie';
 
 export default class Director extends Base {
   static tableName = 'directors';
@@ -40,6 +41,7 @@ export default class Director extends Base {
   };
 
   name: string;
+  readonly movies?: Array<Movie>;
 
   // Force the response to be an array of strings that match keys of a server Director -
   // e.g. the 'name' definition above
