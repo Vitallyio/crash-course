@@ -23,6 +23,8 @@ export default class Movie extends Base {
   director_id: string;
   readonly director: Director;
 
+  // Force the response to be an array of strings that match keys of a server Director -
+  // e.g. the 'name' definition above
   getJsonAttributes(): Array<keyof this> {
     return JSONAttributes;
   }

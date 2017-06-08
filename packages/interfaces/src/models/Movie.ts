@@ -29,6 +29,7 @@ export const JSONSchema = {
 
 export const JSONAttributes: Array<keyof IMovie> = ['id', 'createdAt', 'name', 'director'];
 
+// An interface that matches the server's API response for a Movie
 export interface IMovie<T = IDirector> {
   readonly id: string;
   readonly createdAt: string;

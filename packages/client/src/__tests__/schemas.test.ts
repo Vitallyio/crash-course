@@ -1,23 +1,24 @@
 import { createFakerObject } from '__tests__/utils';
-import { IDirector as IAPIDirector, JSONAttributes, JSONSchema } from 'Interfaces/models/Director';
-import { directorSchema } from 'schemas';
+import { IMovie, JSONAttributes as MovieAttributes, JSONSchema as MovieSchema } from 'Interfaces/models/Movie';
+import { IDirector, JSONAttributes as DirectorAttributes, JSONSchema as DirectorSchema } from 'Interfaces/models/Director';
+import { movieSchema } from 'schemas';
 import { normalize } from 'normalizr';
 import { IEntitiesState } from 'reducers/entities';
-import * as Moment from 'moment';
 
-describe('IDirector', () => {
-  it('turns the createdAt timestamp into a Moment', () => {
-    const createdAt = Moment().subtract(1, 'day');
-    const fakeDirector = createFakerObject<IAPIDirector>(
-      JSONSchema, JSONAttributes, { createdAt: createdAt.toISOString() }
+describe('IMovie', () => {
+  it('stores the director\'s ID rather than the entire director', () => {
+    const fakeDirector = createFakerObject<IDirector>(
+      DirectorSchema, DirectorAttributes
+    );
+    const fakeMovie = createFakerObject<IMovie>(
+      MovieSchema, MovieAttributes, { director: fakeDirector }
     );
 
-    const normalized: { entities: IEntitiesState } = normalize(fakeDirector, directorSchema);
-    const clientDirector = normalized.entities.directors[fakeDirector.id];
+    const normalized: { entities: IEntitiesState } = normalize(fakeMovie, movieSchema);
+    const clientMovie = normalized.entities.movies[fakeMovie.id];
 
-    console.log(clientDirector);
+    console.log(clientMovie);
 
-    expect(clientDirector.createdAtMoment instanceof Moment).toEqual(true);
-    expect(clientDirector.createdAtMoment.format('YYYY-MM-DD')).toEqual(createdAt.format('YYYY-MM-DD'));
+    expect(clientMovie.director).toEqual(fakeDirector.id);
   });
 });

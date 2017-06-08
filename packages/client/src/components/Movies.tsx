@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import IMovie from 'models/Movie';
-import IDirector from 'models/Director';
+// Import the interface from a shared 'package' instead
+import { IMovie } from 'Interfaces/models/Movie';
+import { IDirector } from 'Interfaces/models/Director';
 import { loadMovies } from '../actions';
 import { IReduxStore } from '../reducers';
 
@@ -22,7 +23,6 @@ type MoviesProps = IMoviesPassedProps & IMoviesConnectedProps & IMoviesDispatchP
 class Movies extends React.Component<MoviesProps, undefined> {
   public componentDidMount() {
     const { loadMovies: dispatchLoadMovies } = this.props;
-
     dispatchLoadMovies();
   }
 
@@ -42,7 +42,7 @@ class Movies extends React.Component<MoviesProps, undefined> {
 
   private renderMovie = (movie: IMovie) => {
     const { directors } = this.props;
-    const director = directors[movie.director];
+    const director = directors[movie.director as any];
 
     return (
       <li key={movie.id}>
@@ -52,6 +52,8 @@ class Movies extends React.Component<MoviesProps, undefined> {
   }
 }
 
+// We can gain typesafe access to our Redux store by simply
+// importing the 'parent' interface
 const mapStateToProps = (
   store: IReduxStore,
   ownProps: IMoviesPassedProps

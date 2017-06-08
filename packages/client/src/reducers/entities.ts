@@ -1,7 +1,7 @@
-import IMovie from 'models/Movie';
-import IDirector from 'models/Director';
+import { IMovie } from 'Interfaces/models/Movie';
+import { IDirector } from 'Interfaces/models/Director';
 import { mergeWith, isArray } from 'lodash';
-import { isApiCallAction, IApiCallAction } from 'actions';
+import { isApiCallAction, IApiCallAction } from 'actions/makeApiCall';
 import { Action } from 'redux';
 
 export interface IEntitiesState {

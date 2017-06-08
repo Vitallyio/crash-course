@@ -2,9 +2,7 @@ import { MOVIES_REQUEST, MOVIES_SUCCESS, MOVIES_FAILURE } from 'actionTypes';
 import callApi, { IAPIState } from './callApi';
 import { combineReducers } from 'redux';
 
-export interface IMoviesState extends IAPIState<{
-  count: number;
-}> {}
+export interface IMoviesState extends IAPIState {}
 
 export interface IMoviesExplorerState {
   movies: IMoviesState;
