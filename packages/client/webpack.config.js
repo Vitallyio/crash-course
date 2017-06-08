@@ -13,7 +13,13 @@ export default {
       src,
       node_modules
     ],
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      // We need to also tell Webpack what the 'Interfaces/' import prefix
+      // means and where it maps to. Again, this is helpful in development,
+      // but we won't rely on this in production
+      Interfaces: path.resolve(__dirname, '../interfaces/src/')
+    }
   },
   target: 'web',
   entry: {

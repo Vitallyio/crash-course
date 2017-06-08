@@ -1,19 +1,6 @@
 import * as React from 'react';
-
-// We assume the server will return directors/movies that obey this shape, but we
-// can't really ensure it
-interface IDirector {
-  readonly id: string;
-  readonly createdAt: string;
-  name: string;
-}
-
-interface IMovie {
-  readonly id: string;
-  readonly createdAt: string;
-  name: string;
-  readonly director: IDirector;
-}
+// Import the interface from a shared 'package' instead
+import { IMovie } from 'Interfaces/models/Movie';
 
 interface IMoviesProps {}
 
