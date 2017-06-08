@@ -1,4 +1,5 @@
-# typescript-react-redux-monorepo
+# Crash Course
+A crash course in using Typescript and a monorepo to ensure full-stack type safety (Backend: Node, Frontend: React + Redux)
 
 ## Setup
 ### Create databases
