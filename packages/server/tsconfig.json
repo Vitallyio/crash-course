@@ -24,13 +24,14 @@
       "*": [
         "src/*"
       ],
+      // Satisfies Typescript module resolution and allows us to easily identify
+      // code imported from a sibling package
       "Interfaces/*": [
         "../interfaces/src/*"
       ]
     }
   },
   "include": [
-    "src/**/*",
-    "../interfaces/src/*"
+    "src/**/*"
   ]
 }
