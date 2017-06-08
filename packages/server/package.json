@@ -12,7 +12,8 @@
   },
   "scripts": {
     "start": "ts-node --inspect=9229 -r tsconfig-paths/register src/index.ts",
-    "start:watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --inspect=9229 -r tsconfig-paths/register src/index.ts"
+    "start:watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --inspect=9229 -r tsconfig-paths/register src/index.ts",
+    "migrate": "knex migrate:latest"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.3",
