@@ -1,51 +1,33 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 // Import the interface from a shared 'package' instead
 import { IMovie } from 'Interfaces/models/Movie';
+import { loadMovies } from '../actions';
+import { IReduxStore } from '../reducers';
 
-interface IMoviesProps {}
+interface IMoviesPassedProps {}
 
-interface IMoviesState {
+interface IMoviesConnectedProps {
+  movies?: Array<IMovie>;
   fetching: boolean;
-  movies: Array<IMovie>;
 }
 
-export default class Movies extends React.Component<IMoviesProps, IMoviesState> {
-  public state: IMoviesState = {
-    fetching: false,
-    movies: []
-  }
+interface IMoviesDispatchProps {
+  loadMovies: () => void;
+}
 
+type MoviesProps = IMoviesPassedProps & IMoviesConnectedProps & IMoviesDispatchProps;
+
+class Movies extends React.Component<MoviesProps, undefined> {
   public componentDidMount() {
-    // Send an API request to fetch movies on mount
-    const fetchOptions: RequestInit = {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'GET'
-    };
-
-    this.setState({
-      fetching: true
-    });
-
-    fetch('http://localhost:5000/v1/movies', fetchOptions).then((response: Response) =>
-      response.json().then((movies: Array<IMovie>) => {
-        if (!response.ok) {
-          // TODO: Display error
-        }
-
-        this.setState({
-          movies,
-          fetching: false
-        });
-      })
-    );
+    const { loadMovies: dispatchLoadMovies } = this.props;
+    dispatchLoadMovies();
   }
 
   public render() {
-    const { fetching, movies } = this.state;
+    const { fetching, movies } = this.props;
 
-    if (fetching) {
+    if (fetching || !movies) {
       return <div>Loading...</div>
     };
 
@@ -62,3 +44,21 @@ export default class Movies extends React.Component<IMoviesProps, IMoviesState> 
     </li>
   );
 }
+
+// We can gain typesafe access to our Redux store by simply
+// importing the 'parent' interface
+const mapStateToProps = (
+  store: IReduxStore,
+  ownProps: IMoviesPassedProps
+): IMoviesConnectedProps => {
+  const { movies } = store;
+
+  return {
+    movies: movies.movies,
+    fetching: movies.fetching
+  };
+}
+
+export default connect(mapStateToProps, {
+  loadMovies
+})(Movies);
