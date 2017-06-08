@@ -4,14 +4,12 @@ import { isApiCallAction, IApiCallAction } from 'actions/makeApiCall';
 // This is the interface each API call will abide by. The 'response'
 // field simply tracks the ID(s) to pull out of the 'entities' store
 export interface IAPIState {
-  isInitiallyLoaded: boolean;
   isFetching: boolean;
   response?: { result: string | Array<string> };
   errorCode?: number;
 }
 
 export const initialState: IAPIState = {
-  isInitiallyLoaded: false,
   isFetching: false,
   response: undefined
 };
